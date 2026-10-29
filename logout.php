@@ -2,10 +2,8 @@
 <?php
 require 'config.php';
 
-// Hapus seluruh data session
 $_SESSION = [];
 
-// Hapus cookie session dari browser
 if (ini_get('session.use_cookies')) {
     $params = session_get_cookie_params();
 
@@ -20,10 +18,8 @@ if (ini_get('session.use_cookies')) {
     );
 }
 
-// Hancurkan session di server
 session_destroy();
 
-// Arahkan kembali ke halaman login
 header('Location: login.php');
 exit;
 ?>
