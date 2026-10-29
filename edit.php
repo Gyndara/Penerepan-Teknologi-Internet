@@ -69,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Mempertahankan input apabila validasi gagal
     $m = [
         'nim' => $nim,
         'nama' => $nama,
