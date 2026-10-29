@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     $konfirmasi = $_POST['konfirmasi'] ?? '';
 
-    // Validasi kelengkapan data
     if ($username === '' || $password === '' || $konfirmasi === '') {
         $error = 'Semua kolom wajib diisi.';
     } elseif (!preg_match('/^[a-zA-Z0-9_]{4,50}$/', $username)) {
@@ -27,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($password !== $konfirmasi) {
         $error = 'Konfirmasi password tidak cocok.';
     } else {
-        // Periksa apakah username sudah digunakan
         $stmt = $pdo->prepare(
             'SELECT id FROM users WHERE username = ?'
         );
@@ -36,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->fetch()) {
             $error = 'Username sudah digunakan.';
         } else {
-            // Hash password sebelum disimpan
             $hash = password_hash($password, PASSWORD_DEFAULT);
 
             try {
